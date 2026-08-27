@@ -1,0 +1,77 @@
+**SRR25630299_1.fastq**
+
+Encoding	Sanger / Illumina 1.9
+Total Sequences	45291631
+Total Bases	6.7 Gbp
+Sequences flagged as poor quality	0
+Sequence length	150
+%GC	48
+
+(!) Per tile seq quality= line at around y2109 & y2607
+(X)Per Base seq content = spike of CT, consistently T till bp 15-19
+(X)Seq Dupe Levels = spike >10, >100,>1k
+(!)Overrep seqs:
+
+Sequence	Count	Percentage	Possible Source
+CTTGAACTCTCTCTTCAAAGTTCTTTTCAACTTTCCCTTACGGTACTTGT	128956	0.2847236832782639	No Hit
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT	71228	0.1572652572392458	No Hit
+CCCGCTTTCACGGTCTGTATTCATACTGAAAATCAAGATCAAGCGAGCTT	70512	0.1556843912289226	No Hit
+GTCAAACTCCCCACCTGCCACTGTCCCCGGAGCGGGTCGCGGGGGGGGGG	57406	0.12674747791705715	No Hit
+
+**SRR25630299_2.fastq**
+
+Encoding	Sanger / Illumina 1.9
+Total Sequences	45291631
+Total Bases	6.7 Gbp
+Sequences flagged as poor quality	0
+Sequence length	150
+%GC	48
+
+(X) Per base seq content = C spike
+(X)Seq Dupe Levels = spike >10, >100,>1k
+(!)Overrep seqs:
+
+Sequence	Count	Percentage	Possible Source
+CTTGATTCTTACTCCTCATCTTCTCATGACTAGTTTTCCTAACCATCATT	52468	0.11584480143804052	No Hit
+
+
+**SRR25630379_1.fastq**
+
+Encoding	Sanger / Illumina 1.9
+Total Sequences	34977867
+Total Bases	5.2 Gbp
+Sequences flagged as poor quality	0
+Sequence length	150
+%GC	47
+
+(X) Per tile seq quality= line at around y2629
+(X)Per Base seq content = spike of CT, consistently T till bp 12-14
+(X)Seq Dupe Levels = spike >10, >100,>1k
+(!)Overrep seqs:
+
+Sequence	Count	Percentage	Possible Source
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT	73880	0.21121928332565276	No Hit
+CTTGGTTGAGGCGCCCTGGGACTGCGTCTATTTTTACTCCTAGTGCTGGT	56304	0.16097036448792032	No Hit
+CTTGAACTCTCTCTTCAAAGTTCTTTTCAACTTTCCCTTACGGTACTTGT	42248	0.12078495238145882	No Hit
+CTGCGAGTGATTTAGCACCCGGCTCCCGCGAACGTGAGTTTCGTGGCCGG	40191	0.11490409063537237	No Hit
+GTTGGAATTGCGATAATTATTGTTGCTGATGTGAAGTAGGCTCGGGTGTC	39034	0.11159628458762222	No Hit
+CTCATCAGTAAATTGAGACGTAAAGGAATAGTCAGACTACGTCAACAAAG	36670	0.10483772495332548	No Hit
+
+**SRR25630379_2.fastq**
+
+Encoding	Sanger / Illumina 1.9
+Total Sequences	34977867
+Total Bases	5.2 Gbp
+Sequences flagged as poor quality	0
+Sequence length	150
+%GC	47
+
+(X) Per tile seq quality= line at around y2629
+(X)Per Base seq content = spike of CT, consistently T till bp 12-14
+(X)Seq Dupe Levels = spike >10, >100,>1k
+(!)Overrep seqs:
+
+Sequence	Count	Percentage	Possible Source
+GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG	54546	0.1559443290238367	No Hit
+CTTGATTCTTACTCCTCATCTTCTCATGACTAGTTTTCCTAACCATCATT	39007	0.11151909291667213	No Hit
+CCAAGACGCAGCATCCCCCGTTATGGAAGAGCTTATTCACTTCCACGACC	37325	0.10671033771155913	No Hit
