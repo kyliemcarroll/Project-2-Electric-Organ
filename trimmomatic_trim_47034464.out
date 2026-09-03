@@ -1,0 +1,58 @@
+ WARN cache for Repodata at /home/kymc/.cache/rattler/cache/repodata is on a network/parallel filesystem (NFS/SMB/FUSE/BeeGFS/Lustre/GPFS/CephFS), redirected to /tmp/pixi-cache-kymc/repodata for this run. Set [cache.repodata] in config.toml or PIXI_CACHE_DIR to override, or [cache.netfs-redirect] = "never" to keep the original path.
+TrimmomaticPE: Started with arguments:
+ -threads 16 /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmed_outputs/SRR25630299_1.trimmed.fastq /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmed_outputs/SRR25630299_2.trimmed.fastq /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR25630299_1_paired.fastq.gz /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR256302993_1_unpaired.fastq.gz /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR256302993_2_paired.fastq.gz /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR25630299_2_unpaired.fastq.gz LEADING:3 TRAILING:3 SLIDINGWINDOW:5:15 MINLEN:35
+Quality encoding detected as phred33
+Input Read Pairs: 45291631 Both Surviving: 44845469 (99.01%) Forward Only Surviving: 306688 (0.68%) Reverse Only Surviving: 124674 (0.28%) Dropped: 14800 (0.03%)
+TrimmomaticPE: Completed successfully
+	Command being timed: "pixi run trimmomatic PE -threads 16 -Xmx16g /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmed_outputs/SRR25630299_1.trimmed.fastq /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmed_outputs/SRR25630299_2.trimmed.fastq /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR25630299_1_paired.fastq.gz /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR256302993_1_unpaired.fastq.gz /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR256302993_2_paired.fastq.gz /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR25630299_2_unpaired.fastq.gz LEADING:3 TRAILING:3 SLIDINGWINDOW:5:15 MINLEN:35"
+	User time (seconds): 2454.60
+	System time (seconds): 10.45
+	Percent of CPU this job got: 1019%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 4:01.87
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 11789064
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 105365
+	Voluntary context switches: 70833
+	Involuntary context switches: 15925
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 240
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+ WARN cache for Repodata at /home/kymc/.cache/rattler/cache/repodata is on a network/parallel filesystem (NFS/SMB/FUSE/BeeGFS/Lustre/GPFS/CephFS), redirected to /tmp/pixi-cache-kymc/repodata for this run. Set [cache.repodata] in config.toml or PIXI_CACHE_DIR to override, or [cache.netfs-redirect] = "never" to keep the original path.
+TrimmomaticPE: Started with arguments:
+ -threads 16 /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmed_outputs/SRR25630379_1.trimmed.fastq /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmed_outputs/SRR25630379_2.trimmed.fastq /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR25630379_1_paired.fastq.gz /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR25630379_1_unpaired.fastq.gz /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR25630379_2_paired.fastq.gz /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR25630379_2_unpaired.fastq.gz LEADING:3 TRAILING:3 SLIDINGWINDOW:5:15 MINLEN:35
+Quality encoding detected as phred33
+Input Read Pairs: 34977867 Both Surviving: 34647987 (99.06%) Forward Only Surviving: 233868 (0.67%) Reverse Only Surviving: 82184 (0.23%) Dropped: 13828 (0.04%)
+TrimmomaticPE: Completed successfully
+	Command being timed: "pixi run trimmomatic PE -threads 16 -Xmx16g /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmed_outputs/SRR25630379_1.trimmed.fastq /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmed_outputs/SRR25630379_2.trimmed.fastq /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR25630379_1_paired.fastq.gz /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR25630379_1_unpaired.fastq.gz /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR25630379_2_paired.fastq.gz /projects/bgmp/kymc/bioinfo/Bi623/Proj2_QAA/Project-2-Electric-Organ/trimmomatic_outputs/SRR25630379_2_unpaired.fastq.gz LEADING:3 TRAILING:3 SLIDINGWINDOW:5:15 MINLEN:35"
+	User time (seconds): 1834.14
+	System time (seconds): 7.88
+	Percent of CPU this job got: 936%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:16.73
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 9615128
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 82777
+	Voluntary context switches: 55639
+	Involuntary context switches: 9191
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 216
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
