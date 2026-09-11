@@ -1,0 +1,310 @@
+---
+title: "Project 2, parts 4 and 5: RNA-seq analysis"
+output: html_document
+date: "2025-05-08"
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Project 2 parts 4 and 5 overall: 75 points
+
+Include any code that you used to solve the question as well as the
+answers for all below questions. In parts 4 and 5 from project 2, you
+will explore how gene expression differs between electric fish tissues.
+You will learn how to analyze RNA-seq count data: identify
+differentially expressed genes, distinguish samples, and make biological
+interpretations. Additionally, you will visualize findings and
+communicate them effectively. **Note: Please submit the Rmd and the knit
+HTML file for this assignment**
+
+### Dataset reminder:
+
+In this project, you are be analyzing the count data and identifying
+differentially expressed genes between skeletal muscle and electric
+organ tissue. As a reminder, these datasets originated from two
+different electric fish studies (PRJNA1005245 and PRJNA1005244). It may
+help to consider how these papers analyzed the data: the methods for the
+PRJNA1005244 dataset are
+[published](https://doi.org/10.1093/molbev/msae021) and the methods for
+the PRJNA1005245 dataset are written in the third chapter of a
+[thesis](https://canvas.uoregon.edu/courses/266187/files/22059308?module_item_id=5380118).
+These studies are both using the genus *Campylomormyrus*. **For this
+assignment, you may not need to analyze all of the data to address the
+hypothesis.**
+
+### Resources:
+
+There are several resources that you may use to complete this
+assignment:
+
+1)  A primary resource: [DESeq2
+    workflow](https://master.bioconductor.org/packages/release/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html#pre-filtering-the-dataset)
+
+2)  [DESeq2's additional
+    guide](https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html)
+
+3)  [Harvard Bioinformatics Core
+    training](https://hbctraining.github.io/DGE_workshop/lessons/04_DGE_DESeq2_analysis.html)
+
+You are expected to use DESeq2 for this assignment. If you decide to use
+an additional package, please list the package name, how you found it,
+and why you chose to use it. We will do our best to help you navigate
+other packages, but we cannot guarantee support for other packages.
+
+## Project 2 part 4: Hypothesis testing and exploration
+
+0.  In part 4, your goal is to investigate differences in gene
+    expression between the electric organ and skeletal muscle. Write the
+    null hypothesis for this goal below.
+
+```         
+Null Hypothesis: There is no difference in gene expression between tissue samples
+```
+
+1.  Load your data into DESeq2
+
+- Your data is located on Talapas:
+  /projects/bgmp/shared/Bi623/Project2/counts.tar
+- **Think carefully about your design formula and explain your chosen
+  formula below**
+- Note: you can follow the Bear_analysis rmd from class as a template or
+  can also reference other resources online, such as this guide from
+  [Duke](https://people.duke.edu/~ccc14/duke-hts-2017/Statistics/08032017/DESeq2-Notebook-introduction.html)
+  to load your data.
+
+```{r}
+#I found these packages on the Duke website
+library(tidyverse)
+library(edgeR)
+library(limma)
+library(Glimma)
+library(ggplot2)
+library(RColorBrewer)
+library(DESeq2)
+library(apeglm)
+```
+
+```{r}
+#data load in
+campy_meta = read.csv("C:/Users/kylie/Documents/Project2_P4/Project2_RNAseq_metadata_campy.csv")
+
+campy_filtered = filter_out(campy_meta, campy_meta$AgeSize == "6cm")
+
+campy = DESeqDataSetFromHTSeqCount(campy_filtered, directory="C:/Users/kylie/Documents/Project2_P4/counts_tar", design=~ Species+Tissue+Species:Tissue)
+```
+
+```         
+The experiment is filtered by species since that is also a variable relevant to the design.
+```
+
+2.  Filter the dataset to remove genes that are lowly expressed
+
+- There are multiple ways to filter RNA-Seq datasets. You can either use
+  cpm(counts per million) as a filter as we did in the Bear_analysis or
+  use raw counts completed in the DESeq2 vignette from the above
+  resources.
+- Describe why you used your filtering strategy
+
+```         
+xxx
+```
+
+```{r}
+mycpm = cpm(campy)
+head(mycpm)
+```
+
+[Specify which approach you chose and why]
+
+3.  Normalize the dataset and run differential expression analysis
+
+- You may choose to normalize and run differential expression separately
+  as done in the Bear_analysis, or in 1 command as done in the DESeq
+  workflow 5.1.
+
+```{r}
+thresh = mycpm > 0.5
+
+head(thresh)
+```
+
+```{r}
+
+table(rowSums(thresh))
+
+# we would like to keep genes that have at least 2 TRUES in each row of thresh
+keep <- rowSums(thresh) >= 2
+# Subset the rows of count data to keep the more highly expressed genes
+campy <- campy[keep,]
+
+## Examining how many genes we have left in the dataset
+campy
+```
+
+4.  Normalize the data to use for dimensionality reduction
+
+- Use the rlog transformation method (follow along with the workflow,
+  section 4.2)
+- Describe why the rlog transformation is performed
+
+```         
+The rlog is preformed because data needs be normalized for genes with very low counts because those numbers inflate the varience.
+```
+
+```{r}
+campy <- estimateSizeFactors(campy)
+
+## Retrieving size factors
+sizeFactors(campy)
+
+## Comparing size factors to library size
+colSums(counts(campy))
+
+
+campy = DESeq(campy)
+
+
+
+```
+
+```{r}
+rld <- rlog(campy, blind = FALSE)
+head(assay(rld), 3)
+```
+
+5.  Identify distances between samples using sample distance heatmaps
+
+- Generate a Euclidean distance heatmap and dendrogram using your rlog
+  transformed data (follow workflow section 4.3)
+- Create a Poisson distance heatmap with dendrogram using DESeq data
+  (follow workflow section 4.3)
+- Describe what each of these heatmaps are measuring
+- Look at the sample groupings for each heatmap+dendrogram. Do you
+  notice any potential individual outliers? Do both plots agree?
+
+Note: You may need to install the packages “pheatmap” and “RColorBrewer”
+to follow along. If R tells you to restart your session listen to it.
+
+```{r}
+library(pheatmap)
+library(RColorBrewer)
+```
+
+```{r}
+sampleDists <- dist(t(assay(rld)))
+sampleDists
+```
+
+```{r}
+sampleDistMatrix <- as.matrix( sampleDists )
+rownames(sampleDistMatrix) <- paste( rld$Tissue, rld$SRRfile, sep = " - " )
+colnames(sampleDistMatrix) <- NULL
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+pheatmap(sampleDistMatrix,
+         clustering_distance_rows = sampleDists,
+         clustering_distance_cols = sampleDists,
+         col = colors)
+```
+
+```{r}
+library("PoiClaClu")
+poisd <- PoissonDistance(t(counts(campy)))
+```
+
+```{r}
+samplePoisDistMatrix <- as.matrix( poisd$dd )
+rownames(samplePoisDistMatrix) <- paste( campy$Tissue, campy$SRRfile, sep=" - " )
+colnames(samplePoisDistMatrix) <- NULL
+pheatmap(samplePoisDistMatrix,
+         clustering_distance_rows = poisd$dd,
+         clustering_distance_cols = poisd$dd,
+         col = colors)
+```
+
+[Describe the two heatmaps and what they are measuring (Any outliers? Do
+the plots have the same interpretation?)]
+
+```         
+There is one outlier in the electric organ samples with one random skeletal muscle sample (ending in 366) being lumped in so that could be an outlier that is left out.
+```
+
+6.  Examine similarity in sample global gene expression using PCA,
+    Generalized PCA, and MDS plots.
+
+- Generate PCA, Generalized PCA, and MDS plots (following workflow
+  section 4.4-4.6)
+- Modify the color and shape of points to reflect Tissue and Species of
+  samples
+- Briefly describe each approach and their findings.
+
+```{r}
+pcaData <- plotPCA(rld, intgroup = c("Tissue", "SpeciesSmaller"), returnData = TRUE)
+pcaData
+```
+
+```{r}
+percentVar <- round(100 * attr(pcaData, "percentVar"))
+```
+
+```{r}
+ggplot(pcaData, aes(x = PC1, y = PC2, color = Tissue, shape = SpeciesSmaller)) +
+  geom_point(size =3) +
+  xlab(paste0("PC1: ", percentVar[1], "% variance")) +
+  ylab(paste0("PC2: ", percentVar[2], "% variance")) +
+  coord_fixed() +
+  ggtitle("PCA with RLD data")
+```
+
+```{r}
+
+library("glmpca")
+gpca <- glmpca(counts(campy), L=2)
+gpca.dat <- gpca$factors
+gpca.dat$Tissue <- campy$Tissue
+gpca.dat$SpeciesSmaller <- campy$SpeciesSmaller
+
+ggplot(gpca.dat, aes(x = dim1, y = dim2, color = Tissue, shape = SpeciesSmaller)) +
+  geom_point(size =3) + coord_fixed() + ggtitle("glmpca - Generalized PCA")
+```
+
+```{r}
+mds <- as.data.frame(colData(rld))  %>%
+  cbind(cmdscale(sampleDistMatrix))
+ggplot(mds, aes(x = `1`, y = `2`, color = Tissue, shape = SpeciesSmaller)) +
+  geom_point(size = 3) + coord_fixed() + ggtitle("MDS with RLD data")
+```
+
+7.  Use your dimensionality reduction plots, evaluate sample quality and
+    complete quality adjustments.
+
+- Based on your dimensionality reduction plots, do you have concerns
+  about any samples? Explain.
+- If so, remove them now, repeat steps of loading in data, filtering,
+  normalization, and running the differential expression analysis.
+
+[Describe your answer. If you identify a problem, then include the code
+used to repeat the initial data loading, filtering, normalization, and
+DE steps]
+
+```{r}
+campy_meta2 = filter_out(campy_filtered, SRRfile == "SRR25630366")
+
+final_campy = DESeqDataSetFromHTSeqCount(campy_filtered, directory="C:/Users/kylie/Documents/Project2_P4/counts_tar", design=~ Species+Tissue+Species:Tissue)
+myCPM2 = cpm(final_campy)
+
+thresh2 = myCPM2 > 0.5
+
+# Summary of how many TRUEs there are in each row by sample
+table(rowSums(thresh2))
+
+# we would like to keep genes that have at least 2 TRUES in each row of thresh
+# I.e. we keep any gene with myCPM values above .5 for 2 or more samples
+keep2 <- rowSums(thresh2) >= 2
+# Subset the rows of count data to keep the more highly expressed genes
+final_campy = final_campy[keep2,]
+```
